@@ -30,3 +30,7 @@ A RESTful API to query the producers with the longest and shortest gaps between 
    ```bash
    uvicorn main:app --reload
    ```
+2. Go to url to access the endpoints:
+   ```
+   http://127.0.0.1:8000/docs
+   ```

@@ -1,6 +1,10 @@
 import csv
 import io
+import logging
+from pathlib import Path
 from typing import List
+
+logger = logging.getLogger(__name__)
 
 
 class MovieCsv:
@@ -12,7 +16,7 @@ class MovieCsv:
         self.winner = winner
 
     @classmethod
-    def read_csv_file(cls, file_path: str) -> List['MovieCsv']:
+    def read_csv_file(cls, file_path: Path) -> List['MovieCsv']:
         with open(file_path, "r", encoding="utf-8") as f:
             csv_content = f.read()
             reader = csv.DictReader(io.StringIO(csv_content), delimiter=';')
@@ -29,6 +33,6 @@ class MovieCsv:
                     )
                     movies.append(movie)
                 except Exception as e:
-                    print(f"Error processing CSV line {row}. Error: {str(e)}")
+                    logger.error(f"Error processing CSV line {row}. Error: {str(e)}")
 
             return movies

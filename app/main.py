@@ -1,22 +1,16 @@
-from fastapi import FastAPI
+import logging
 from contextlib import asynccontextmanager
 
-from sqlmodel import Session
+from fastapi import FastAPI
 
-from app.csv_reader import MovieCsv
-from app.database import engine, init_db
-from app.services import load_csv_to_db
+from app.routes import router
+
+logging.basicConfig(level=logging.INFO)
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()
-
-    movies = MovieCsv.read_csv_file(file_path="app/data/movielist.csv")
-
-    with Session(engine) as session:
-        load_csv_to_db(movies, session)
-
     yield
 
 app = FastAPI(title="Golden Raspberry Awards API", lifespan=lifespan)
+app.include_router(router)
