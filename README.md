@@ -1,7 +1,7 @@
 # golden-raspberry-api
 
 A RESTful API to query the producers with the longest and shortest gaps between consecutive Razzie wins (Worst Picture).
-## Requisitos
+## Requirements
 
 - Python 3.11+
 - Poetry (install with `pip install poetry`)
@@ -42,6 +42,7 @@ A RESTful API to query the producers with the longest and shortest gaps between 
    ```bash
    poetry run pytest
    ```
+
 
 ## Observation
 
