@@ -28,7 +28,7 @@ A RESTful API to query the producers with the longest and shortest gaps between 
 
 1. Run the server in the virtual environment:
    ```bash
-   uvicorn main:app --reload
+   uvicorn app.main:app --reload
    ```
 2. Go to url to access the endpoints:
    ```
