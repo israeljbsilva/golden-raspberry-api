@@ -34,3 +34,11 @@ A RESTful API to query the producers with the longest and shortest gaps between 
    ```
    http://127.0.0.1:8000/docs
    ```
+
+
+## Running tests
+
+1. Run the test:
+   ```bash
+   poetry run pytest
+   ```
