@@ -27,7 +27,13 @@ def get_producer_intervals(session: Session) -> ProducerIntervalsResponse:
 
     producer_wins = {}
     for movie in winners:
-        producers = [p.strip() for p in movie.producers.split(',')]
+        producers = []
+        for part in movie.producers.split(','):
+            for subpart in part.split(' and '):
+                producer = subpart.strip()
+                if producer:
+                    producers.append(producer)
+
         for producer in producers:
             if producer:
                 if producer not in producer_wins:
@@ -36,7 +42,7 @@ def get_producer_intervals(session: Session) -> ProducerIntervalsResponse:
 
     intervals = []
     for producer, years in producer_wins.items():
-        years = sorted(years)
+        years = sorted(set(years))
         if len(years) >= 2:
             for i in range(len(years) - 1):
                 interval = years[i + 1] - years[i]
